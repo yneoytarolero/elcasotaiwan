@@ -23,6 +23,34 @@ body{
     color:white;
 }
 
+/* CONTADOR DE VISITAS */
+
+#contador{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:rgba(17,17,17,.9);
+    border:1px solid #333;
+    border-radius:12px;
+    padding:10px 15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    z-index:10000;
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 20px rgba(255,0,0,.2);
+}
+
+#contador span{
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+}
+
+#contador img{
+    height:20px;
+}
+
 /* Intro */
 
 #intro{
@@ -110,6 +138,12 @@ body{
 </style>
 </head>
 <body>
+
+<!-- CONTADOR -->
+<div id="contador">
+    <span>👁️ Visitas</span>
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=yneoytarolero.elcasotaiwan&left_text=Total&right_color=8b0000" alt="Visitas">
+</div>
 
 <div id="intro">
     <h1>EL CASO<br>TaiwanConDrip</h1>
