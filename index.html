@@ -1,76 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EL CASO TaiwanConDrip</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, Helvetica, sans-serif;
-        }
+<title>EL CASO TaiwanConDrip</title>
 
-        body{
-            background:#0a0a0a;
-            color:white;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            height:100vh;
-            overflow:hidden;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        .container{
-            text-align:center;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        h1{
-            font-size:4rem;
-            color:#ff2d2d;
-            text-shadow:
-                0 0 10px #ff2d2d,
-                0 0 30px #ff0000,
-                0 0 60px #ff0000;
-            animation:pulse 2s infinite;
-        }
+body{
+    background:#090909;
+    color:white;
+}
 
-        p{
-            margin-top:20px;
-            font-size:1.2rem;
-            color:#cfcfcf;
-        }
+/* Intro */
 
-        @keyframes pulse{
-            0%,100%{
-                transform:scale(1);
-                opacity:1;
-            }
-            50%{
-                transform:scale(1.05);
-                opacity:.8;
-            }
-        }
+#intro{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+    animation:hideIntro .8s ease forwards;
+    animation-delay:3s;
+}
 
-        .background{
-            position:fixed;
-            inset:0;
-            background:
-                radial-gradient(circle at center,#300000 0%,#120000 40%,#000 100%);
-            z-index:-1;
-        }
-    </style>
+#intro h1{
+    font-size:65px;
+    color:#ff3131;
+    text-shadow:0 0 25px red;
+    animation:pulse 2s infinite;
+}
+
+#intro p{
+    margin-top:15px;
+    color:#aaa;
+    letter-spacing:3px;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+}
+
+@keyframes hideIntro{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+/* Contenido */
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:80px 20px;
+}
+
+.case{
+    margin-bottom:90px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 0 25px rgba(255,0,0,.08);
+
+    opacity:0;
+    transform:translateY(80px);
+    transition:1s;
+}
+
+.case.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.case img{
+    width:100%;
+    display:block;
+}
+
+.case-content{
+    padding:25px;
+}
+
+.case-content h2{
+    color:#ff4040;
+    margin-bottom:15px;
+}
+
+.case-content p{
+    color:#ddd;
+    line-height:1.7;
+}
+</style>
 </head>
 <body>
 
-<div class="background"></div>
+<div id="intro">
+    <h1>EL CASO<br>TaiwanConDrip</h1>
+    <p>Cargando evidencias...</p>
+</div>
 
 <div class="container">
-    <h1>EL CASO TaiwanConDrip</h1>
-    <p>Próximamente...</p>
+
+<div class="case">
+<img src="img/1.jpg">
+<div class="case-content">
+<h2>Evidencia #1</h2>
+<p>Escribí acá la explicación de la primera imagen.</p>
 </div>
+</div>
+
+<div class="case">
+<img src="img/2.jpg">
+<div class="case-content">
+<h2>Evidencia #2</h2>
+<p>Acá va el texto de la segunda imagen.</p>
+</div>
+</div>
+
+<div class="case">
+<img src="img/3.jpg">
+<div class="case-content">
+<h2>Evidencia #3</h2>
+<p>Contá lo que muestra esta captura.</p>
+</div>
+</div>
+
+<div class="case">
+<img src="img/4.jpg">
+<div class="case-content">
+<h2>Evidencia #4</h2>
+<p>Más información sobre el caso.</p>
+</div>
+</div>
+
+<div class="case">
+<img src="img/5.jpg">
+<div class="case-content">
+<h2>Conclusión</h2>
+<p>Acá podés escribir el cierre del caso.</p>
+</div>
+</div>
+
+</div>
+
+<script>
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+},{
+    threshold:.2
+});
+
+document.querySelectorAll(".case").forEach(card=>{
+    observer.observe(card);
+});
+
+</script>
 
 </body>
 </html>
